@@ -1,3 +1,5 @@
-export default function PageName() {
-  return <div>PageName</div>;
+function Contact() {
+    return <h1>Contacts</h1>
 }
+
+export default Contact;

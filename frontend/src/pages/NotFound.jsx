@@ -1,3 +1,5 @@
-export default function PageName() {
-  return <div>PageName</div>;
+function NotFound() {
+    return <h1>NotFound</h1>
 }
+
+export default NotFound;

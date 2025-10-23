@@ -1,3 +1,5 @@
-export default function PageName() {
-  return <div>PageName</div>;
+function CarDetais() {
+    return <h1>CarDetails</h1>
 }
+
+export default CarDetais;
