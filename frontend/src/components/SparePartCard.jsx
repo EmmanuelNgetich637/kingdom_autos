@@ -1,0 +1,45 @@
+import React from "react";
+import partsData from "../data/partsData";
+
+function SpareParts() {
+  return (
+    <div className="container">
+      <h2 className="text-center mb-4 fw-bold">Spare Parts Store</h2>
+
+      <div className="row">
+        {partsData.map((part) => (
+          <div key={part.id} className="col-md-4 mb-4">
+            <div className="card h-100 shadow-sm">
+              <img
+                src={part.image}
+                className="card-img-top"
+                alt={part.name}
+                onError={(e) => (e.target.src = "https://via.placeholder.com/300")}
+              />
+              <div className="card-body">
+                <h5 className="card-title fw-semibold">{part.name}</h5>
+                <p className="card-text text-muted small">{part.category}</p>
+                <p className="mb-2">{part.description}</p>
+                <p className="fw-bold mb-1">KSh {part.price.toLocaleString()}</p>
+                <span
+                  className={`badge ${
+                    part.stock > 0 ? "bg-success" : "bg-danger"
+                  }`}
+                >
+                  {part.stock > 0 ? `In Stock (${part.stock})` : "Out of Stock"}
+                </span>
+              </div>
+              <div className="card-footer text-center">
+                <button className="btn btn-primary w-100" disabled={part.stock <= 0}>
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default SpareParts;

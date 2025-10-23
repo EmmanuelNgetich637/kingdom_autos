@@ -4,7 +4,7 @@ import Footer from "./components/Footer";
 
 import Home from "./pages/Home";
 import Cars from "./pages/Cars";
-import Parts from "./pages/Parts";
+import SpareParts from "./pages/SpareParts";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
@@ -18,7 +18,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/cars" element={<Cars />} />
-            <Route path="/parts" element={<Parts />} />
+            <Route path="/spareparts" element={<SpareParts />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<NotFound />} />
