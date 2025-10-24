@@ -1,7 +1,10 @@
 import React from "react";
+import { useCart } from "../context/CartContext";
 import partsData from "../data/partsData";
 
 function SpareParts() {
+  const { addToCart } = useCart(); // ✅ Use the context
+
   return (
     <div className="container my-4">
       <h2 className="text-center mb-4 fw-bold">Spare Parts Store</h2>
@@ -36,6 +39,7 @@ function SpareParts() {
                 <button
                   className="btn btn-primary w-100"
                   disabled={part.stock <= 0}
+                  onClick={() => addToCart(part)} // ✅ Adds item to cart
                 >
                   Add to Cart
                 </button>
