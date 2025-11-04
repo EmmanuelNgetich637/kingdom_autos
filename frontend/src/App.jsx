@@ -7,12 +7,11 @@ import Cars from "./pages/Cars";
 import CarDetails from "./pages/CarDetails";  
 import SpareParts from "./pages/SpareParts";
 import Cart from "./pages/Cart";
+import Checkout from "./pages/Checkout";   // ✅ Added
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
-
-
-
+ 
 function App() {
   return ( 
     <Router>
@@ -25,6 +24,7 @@ function App() {
             <Route path="/cars/:id" element={<CarDetails />} />
             <Route path="/spareparts" element={<SpareParts />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/checkout" element={<Checkout />} /> {/* ✅ Added */}
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<NotFound />} />

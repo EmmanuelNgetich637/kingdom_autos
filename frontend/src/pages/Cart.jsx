@@ -1,11 +1,14 @@
-import React from "react";
-import { Container, Button, Table } from "react-bootstrap";
 import { useCart } from "../context/CartContext";
+import { Button, Container, Table } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 function Cart() {
-  const { cartItems, removeFromCart, clearCart, getTotalPrice } = useCart();
+  const { cart, removeFromCart, clearCart } = useCart();
+  const navigate = useNavigate();
 
-  if (cartItems.length === 0) {
+  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+  if (cart.length === 0) {
     return (
       <Container className="mt-5 text-center">
         <h3>Your cart is empty 🛒</h3>
@@ -15,25 +18,25 @@ function Cart() {
 
   return (
     <Container className="mt-5">
-      <h2 className="mb-4 fw-bold">Your Shopping Cart</h2>
+      <h2 className="mb-4">Your Shopping Cart</h2>
 
-      <Table bordered hover responsive className="align-middle">
-        <thead className="table-dark">
+      <Table bordered hover responsive>
+        <thead>
           <tr>
             <th>Name</th>
             <th>Qty</th>
-            <th>Price (KSh)</th>
-            <th>Subtotal (KSh)</th>
+            <th>Price</th>
+            <th>Subtotal</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
-          {cartItems.map((item) => (
+          {cart.map((item) => (
             <tr key={item.id}>
               <td>{item.name}</td>
               <td>{item.quantity}</td>
-              <td>{item.price.toLocaleString()}</td>
-              <td>{(item.price * item.quantity).toLocaleString()}</td>
+              <td>Ksh {item.price}</td>
+              <td>Ksh {item.price * item.quantity}</td>
               <td>
                 <Button
                   variant="danger"
@@ -49,10 +52,15 @@ function Cart() {
       </Table>
 
       <div className="d-flex justify-content-between align-items-center mt-3">
-        <h4>Total: <strong>KSh {getTotalPrice().toLocaleString()}</strong></h4>
-        <Button variant="warning" onClick={clearCart}>
-          Clear Cart
-        </Button>
+        <h4>Total: Ksh {total.toLocaleString()}</h4>
+        <div>
+          <Button variant="warning" className="me-2" onClick={clearCart}>
+            Clear Cart
+          </Button>
+          <Button variant="success" onClick={() => navigate("/checkout")}>
+            Proceed to Checkout
+          </Button>
+        </div>
       </div>
     </Container>
   );
